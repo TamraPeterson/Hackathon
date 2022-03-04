@@ -1,5 +1,6 @@
 export class Post {
-  constructor({ name, img, body }) {
+  constructor({ id, name, img, body }) {
+    this.id = id
     this.name = name
     this.img = img
     this.body = body
@@ -14,7 +15,7 @@ export class Post {
         <h5>@${this.name}</h5>
         <img
           src=${this.img}
-          alt="cow" class="img-fluid">
+          alt="cow" class="img-fluid post-image">
         <div>
           <h5>${this.body}</h5>
         </div>
