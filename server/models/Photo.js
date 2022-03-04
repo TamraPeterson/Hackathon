@@ -8,3 +8,10 @@ export const PhotoSchema = new Schema({
 },
   { timestamps: true, toJSON: { virtuals: true } }
 )
+
+PhotoSchema.virtual('creator', {
+  localField: 'creatorId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Account'
+})
