@@ -13,7 +13,5 @@ export class PostsController {
     _draw()
   }
 
-  async newPost() {
 
-  }
 }
