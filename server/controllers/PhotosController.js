@@ -11,6 +11,7 @@ export class PhotosController extends BaseController {
       .get('/:id', this.getById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
+      .delete('/:id', this.remove)
   }
   async getById(req, res, next) {
     try {
@@ -33,6 +34,14 @@ export class PhotosController extends BaseController {
       req.body.creatorId = req.userInfo.id
       const photo = await photosService.create(req.body)
       res.send(photo)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async remove(req, res, next) {
+    try {
+      const photo = await photosService.remove(req.params.id, req.userInfo.id)
+      return res.send('Post removed')
     } catch (error) {
       next(error)
     }
