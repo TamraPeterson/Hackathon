@@ -1,3 +1,9 @@
+import { }
+
+export const PhotoSchema = new Schema(
+    {
 
 
-export const PhotoSchema = new Schema
+    }
+
+)
