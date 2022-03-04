@@ -12,4 +12,8 @@ export class PostsController {
   constructor() {
     _draw()
   }
+
+  async newPost() {
+
+  }
 }
