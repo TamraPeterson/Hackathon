@@ -18,6 +18,13 @@ class PhotosService {
     return photo
   }
 
+  async remove(id, userId) {
+    const original = await this.getById(id)
+    if (original.creatorId.toString() !== userId) {
+      throw new BadRequest('Not your post!')
+    }
+    await dbContext.Photos.findOneAndRemove({ _id: id })
+  }
 }
 
 export const photosService = new PhotosService()
