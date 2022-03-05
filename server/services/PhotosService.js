@@ -3,11 +3,11 @@ import { BadRequest } from "../utils/Errors"
 
 class PhotosService {
   async getAll(query = {}) {
-    const photos = await dbContext.Photos.find(query)
+    const photos = await dbContext.Photos.find(query).populate('creator', 'name')
     return photos
   }
   async getById(id) {
-    const photo = await dbContext.Photos.findById(id)
+    const photo = await dbContext.Photos.findById(id).populate('creator', 'name')
     if (!photo) {
       throw new BadRequest('That photo does not exist')
     }
@@ -16,6 +16,12 @@ class PhotosService {
   async create(body) {
     const photo = await dbContext.Photos.create(body)
     return photo
+  }
+  async like(id) {
+    const original = await dbContext.Photos.findById(id)
+    original.like = !original.like
+    await original.save()
+    return original.like ? 'Like added' : 'Like removed'
   }
 
   async remove(id, userId) {
