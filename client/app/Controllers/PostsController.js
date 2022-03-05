@@ -7,6 +7,7 @@ import { Pop } from "../Utils/Pop.js"
 
 function _drawPosts() {
   let template = ''
+  console.log(ProxyState.posts);
   ProxyState.posts.forEach(p => template += p.Template)
   document.getElementById('posts').innerHTML = template
 
@@ -19,7 +20,7 @@ export class PostsController {
   constructor() {
     ProxyState.on('posts', _drawPosts)
     _drawPosts()
-    // postsService.getPosts()
+    postsService.getPosts()
   }
 
   async handleSubmit(id) {
@@ -27,9 +28,7 @@ export class PostsController {
       window.event.preventDefault()
       let form = window.event.target
       const rawData = {
-        //@ts-ignore
-        img: form.img.value,
-        //@ts-ignore
+        imgUrl: form.img.value,
         body: form.body.value,
         name: ProxyState.user.name
       }
@@ -38,7 +37,6 @@ export class PostsController {
       let modal = document.getElementById('new-post')
       //@ts-ignore
       form.reset()
-      //@ts-ignore
       bootstrap.Modal.getOrCreateInstance(modal).hide()
     } catch (error) {
       console.log(error);
