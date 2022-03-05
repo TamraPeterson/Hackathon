@@ -13,6 +13,7 @@ export class PhotosController extends BaseController {
       .get('/:id/likes', this.getLikesByPhotoId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('/:id/likes', this.like)
+      // .post('/id/comments', this.comment)
       .post('', this.create)
       .put('/:id', this.like)
       .delete('/:id', this.remove)
@@ -52,12 +53,19 @@ export class PhotosController extends BaseController {
   }
   async like(req, res, next) {
     try {
-      const message = await photosService.like(req.params.id)
+      const message = await likesService.like(req.params.id)
       return res.send(message)
     } catch (error) {
       next(error)
     }
   }
+  // async comment(req, res, next){
+  //   try {
+  //     const message = await.
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
   async remove(req, res, next) {
     try {
       const photo = await photosService.remove(req.params.id, req.userInfo.id)
