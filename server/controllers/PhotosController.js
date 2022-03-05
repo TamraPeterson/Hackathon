@@ -10,7 +10,9 @@ export class PhotosController extends BaseController {
     this.router
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get('/:id/likes', this.getLikesByPhotoId)
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .post('/:id/likes', this.like)
       .post('', this.create)
       .put('/:id', this.like)
       .delete('/:id', this.remove)
@@ -31,9 +33,9 @@ export class PhotosController extends BaseController {
       next(error)
     }
   }
-  async getPhotoLikes(req, res, next) {
+  async getLikesByPhotoId(req, res, next) {
     try {
-      const likes = await likesService.getAll({ photoId: req.params.id })
+      const likes = await likesService.getLikesByPhotoId(req.params.id)
       return res.send(likes)
     } catch (error) {
       next(error)

@@ -3,6 +3,10 @@ import { BadRequest } from "../utils/Errors"
 
 
 class LikesService {
+  async getLikesByPhotoId(photoId) {
+    const likes = await dbContext.Likes.find({ photoId: photoId })
+    return likes
+  }
   async getAll(query = {}) {
     const likes = await dbContext.Likes.find(query)
     return likes
@@ -16,8 +20,8 @@ class LikesService {
     return like
   }
 
-  async create(newLike) {
-    const like = await dbContext.Likes.create(newLike)
+  async create(body) {
+    const like = await dbContext.Likes.create(body)
     await like.populate('creator', 'name')
     return like
   }
