@@ -20,10 +20,13 @@ export class Post {
           <h5>${this.body}</h5>
         </div>
         <button class="btn btn-info" onclick="">Like</button>
-        <button class="btn btn-primary" onclick="">Comment</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-comment"
+        id="create-comment" onclick="app.commentsController.drawComments('${this.id}')">Comment</button>
       </div>
     </div>
 
   </div>`
   }
+
+
 }
