@@ -7,6 +7,7 @@ import { Pop } from "../Utils/Pop.js"
 
 function _drawPosts() {
   let template = ''
+  console.log(ProxyState.posts);
   ProxyState.posts.forEach(p => template += p.Template)
   document.getElementById('posts').innerHTML = template
 
@@ -19,7 +20,7 @@ export class PostsController {
   constructor() {
     ProxyState.on('posts', _drawPosts)
     _drawPosts()
-    // postsService.getPosts()
+    postsService.getPosts()
   }
 
   async handleSubmit(id) {
