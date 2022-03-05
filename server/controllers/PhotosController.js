@@ -1,5 +1,6 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import { query } from "express";
+import { commentsService } from "../services/CommentsService";
 import { likesService } from "../services/LikesService";
 import { photosService } from "../services/PhotosService";
 import BaseController from "../utils/BaseController";
@@ -13,7 +14,7 @@ export class PhotosController extends BaseController {
       .get('/:id/likes', this.getLikesByPhotoId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('/:id/likes', this.like)
-      // .post('/id/comments', this.comment)
+      .post('/:id/comments', this.comment)
       .post('', this.create)
       .put('/:id', this.like)
       .delete('/:id', this.remove)
@@ -59,13 +60,15 @@ export class PhotosController extends BaseController {
       next(error)
     }
   }
-  // async comment(req, res, next){
-  //   try {
-  //     const message = await.
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async comment(req, res, next) {
+    try {
+      req.body.creatorId = req.userInfo.id
+      const message = await commentsService.comment(req.body)
+      return res.send(message)
+    } catch (error) {
+      next(error)
+    }
+  }
   async remove(req, res, next) {
     try {
       const photo = await photosService.remove(req.params.id, req.userInfo.id)
