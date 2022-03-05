@@ -1,7 +1,7 @@
 
 
 .post-image {
-    min-height: 30vh;
-    min-width: 30vh;
+    width: 350px;
+    height: 350px;
     object-fit: cover;
 }

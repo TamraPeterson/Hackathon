@@ -26,17 +26,27 @@ export class PostsController {
       window.event.preventDefault()
       let form = window.event.target
       const rawData = {
+        //@ts-ignore
         img: form.img.value,
+        //@ts-ignore
         body: form.body.value,
         name: ProxyState.user.name
       }
 
       postsService.createPost(rawData)
       let modal = document.getElementById('new-post')
+      //@ts-ignore
       form.reset()
+      //@ts-ignore
       bootstrap.Modal.getOrCreateInstance(modal).hide()
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async deletePost(id) {
+    if (await window.confirm()) {
+      postsService.deletePost(id)
     }
   }
 

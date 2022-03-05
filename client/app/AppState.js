@@ -1,7 +1,9 @@
 import { dev } from './env.js'
+import { Comment } from "./Models/Comment.js"
 import { Post } from "./Models/Post.js"
 import { EventEmitter } from './Utils/EventEmitter.js'
 import { isValidProp } from './Utils/isValidProp.js'
+
 
 const practicePost = new Post(
   {
@@ -27,11 +29,36 @@ const practicePost3 = new Post(
     body: 'I like salads'
   }
 )
+
+
+const practiceComment = new Comment(
+  {
+    id: 1,
+    postId: 1,
+    name: 'thisguy@something.com',
+    body: 'I did it'
+  }
+)
+
+const practiceComment2 = new Comment(
+  {
+    id: 2,
+    postId: 3,
+    name: 'thisotherguy@somethingelse.com',
+    body: 'I did it again'
+  }
+)
+
+
 class AppState extends EventEmitter {
   /** @type {import('./Models/Post').Post[]} */
   posts = [practicePost, practicePost2, practicePost3]
 
 
+  /** @type {import('./Models/Comment').Comment[]} */
+  comments = [practiceComment, practiceComment2]
+
+  activePost = null
 
 
   user = {}
