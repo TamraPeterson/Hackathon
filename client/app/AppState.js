@@ -52,11 +52,11 @@ const practiceComment2 = new Comment(
 
 class AppState extends EventEmitter {
   /** @type {import('./Models/Post').Post[]} */
-  posts = [practicePost, practicePost2, practicePost3]
+  posts = []
 
 
   /** @type {import('./Models/Comment').Comment[]} */
-  comments = [practiceComment, practiceComment2]
+  comments = []
 
   activePost = null
 

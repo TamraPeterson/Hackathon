@@ -7,3 +7,9 @@ export const api = axios.create({
   timeout: 8000,
   withCredentials: true
 })
+
+// @ts-ignore
+export const cowApi = axios.create({
+  baseURL: 'http://localhost:3000/api',
+  timeout: 5000
+})
