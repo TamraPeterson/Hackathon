@@ -2,7 +2,7 @@ export class Post {
   constructor(data) {
     this.id = data.id
     this.name = data.name
-    this.img = data.imgUrl
+    this.img = data.image
     this.body = data.body
   }
 

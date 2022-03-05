@@ -19,6 +19,7 @@ export class PostsController {
   constructor() {
     ProxyState.on('posts', _drawPosts)
     _drawPosts()
+    // postsService.getPosts()
   }
 
   async handleSubmit(id) {

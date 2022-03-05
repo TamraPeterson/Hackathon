@@ -19,6 +19,7 @@ export class CommentsController {
   constructor() {
     ProxyState.on('activePost', _drawComments)
     ProxyState.on('comments', _drawComments)
+    // commentsService.getComments()
   }
 
   setActivePost(id) {
