@@ -1,7 +1,14 @@
 
 
 .post-image {
-    width: 350px;
-    height: 350px;
+    width: 375px;
+    height: 375px;
     object-fit: cover;
 }
+
+h1{
+    font-family: 'Fredoka One', cursive;
+font-family: 'Moo Lah Lah', cursive;
+font-size: 80px;
+}
+
