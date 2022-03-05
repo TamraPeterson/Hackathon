@@ -3,6 +3,7 @@ import { dbContext } from "../db/DbContext"
 
 
 class CommentsService {
+
   async getAll(query = {}) {
     const comments = await dbContext.Comments.find(query).populate('creator', 'name')
     return comments
@@ -17,8 +18,8 @@ class CommentsService {
   }
 
 
-  async create(newComment) {
-    const comment = await dbContext.Comments.create(newComment)
+  async comment(newComment) {
+    const comment = await dbContext.Photos.create(newComment)
     return comment
   }
   async edit(update) {
