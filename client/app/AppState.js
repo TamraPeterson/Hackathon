@@ -40,6 +40,15 @@ const practiceComment = new Comment(
   }
 )
 
+const practiceComment2 = new Comment(
+  {
+    id: 2,
+    postId: 3,
+    name: 'thisotherguy@somethingelse.com',
+    body: 'I did it again'
+  }
+)
+
 
 class AppState extends EventEmitter {
   /** @type {import('./Models/Post').Post[]} */
@@ -47,9 +56,9 @@ class AppState extends EventEmitter {
 
 
   /** @type {import('./Models/Comment').Comment[]} */
-  comments = [practiceComment]
+  comments = [practiceComment, practiceComment2]
 
-  activePost = {}
+  activePost = null
 
 
   user = {}

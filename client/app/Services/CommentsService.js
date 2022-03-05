@@ -4,6 +4,9 @@ import { logger } from "../Utils/Logger.js"
 
 
 class CommentsService {
+  setActivePost(id) {
+    ProxyState.activePost = ProxyState.posts.find(p => p.id == id)
+  }
 
 
   createComment(rawData) {

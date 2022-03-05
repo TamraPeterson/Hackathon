@@ -21,12 +21,12 @@ export class Post {
         </div>
         <button class="btn btn-info" onclick="">Like</button>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-comment"
-        id="create-comment" onclick="app.commentsController.drawComments('${this.id}')">Comment</button>
+        id="create-comment" onclick="app.commentsController.setActivePost('${this.id}')">Comment</button>
+        <button class="btn btn-outline-danger" onclick="app.postsController.deletePost('${this.id}')">Delete</button>
       </div>
     </div>
 
   </div>`
   }
-
 
 }
