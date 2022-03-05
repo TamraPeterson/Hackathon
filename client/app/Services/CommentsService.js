@@ -1,7 +1,7 @@
 import { ProxyState } from "../AppState.js"
 import { Comment } from "../Models/Comment.js"
 import { logger } from "../Utils/Logger.js"
-import { cowApi } from "./AxiosService.js"
+import { api, cowApi } from "./AxiosService.js"
 
 
 class CommentsService {
@@ -13,14 +13,16 @@ class CommentsService {
     try {
       let res = await cowApi.get('comments')
       console.log(res.data);
-      ProxyState.comments = res.data.body
+      ProxyState.comments = res.data.map(c => new Comment(c))
     } catch (error) {
       console.error(error)
     }
   }
 
-  createComment(rawData) {
-    const comment = new Comment(rawData)
+  async createComment(rawData) {
+    const res = await api.post('api/comments', rawData)
+    console.log(res.data);
+    const comment = new Comment(res.data)
     ProxyState.comments = [...ProxyState.comments, comment]
     logger.log('Comment Created')
     logger.log(ProxyState.comments)

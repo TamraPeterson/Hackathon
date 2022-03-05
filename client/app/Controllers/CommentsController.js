@@ -19,7 +19,7 @@ export class CommentsController {
   constructor() {
     ProxyState.on('activePost', _drawComments)
     ProxyState.on('comments', _drawComments)
-    // commentsService.getComments()
+    commentsService.getComments()
   }
 
   setActivePost(id) {
@@ -34,7 +34,7 @@ export class CommentsController {
         name: ProxyState.user.name,
         // @ts-ignore
         body: form.comment.value,
-        postId: ProxyState.activePost.id
+        photoId: ProxyState.activePost.id
       }
       commentsService.createComment(rawData)
       // @ts-ignore
