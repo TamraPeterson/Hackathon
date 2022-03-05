@@ -1,9 +1,9 @@
 export class Comment {
-  constructor({ id, postId, name, body }) {
-    this.id = id
-    this.postId = postId
-    this.name = name || ""
-    this.body = body || ""
+  constructor(data) {
+    this.id = data.id
+    this.postId = data.photoId
+    this.name = data.name || ""
+    this.body = data.body || ""
   }
 
   get Template() {
