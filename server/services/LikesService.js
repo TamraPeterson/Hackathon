@@ -25,6 +25,12 @@ class LikesService {
     await like.populate('creator', 'name')
     return like
   }
+  async like(id) {
+    const original = await dbContext.Photos.findById(id)
+    original.like = !original.like
+    await original.save()
+    return original.like ? 'Like added' : 'Like removed'
+  }
 
   async remove(id, userId) {
     const original = await this.getById(id)

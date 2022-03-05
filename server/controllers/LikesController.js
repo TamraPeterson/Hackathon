@@ -10,7 +10,7 @@ export class LikesController extends BaseController {
     this.router
       .get('', this.getAll)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post(':id', this.create)
+      .post('/:id', this.create)
       .delete('/:id', this.remove)
   }
 
