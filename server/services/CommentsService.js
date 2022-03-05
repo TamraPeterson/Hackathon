@@ -21,6 +21,15 @@ class CommentsService {
     const comment = await dbContext.Comments.create(newComment)
     return comment
   }
+  async edit(update) {
+    const original = await this.getById(update.id)
+    if (original.creatorId.toString() !== update.creatorId) {
+      throw new BadRequest('Not allowed to edit this comment!')
+    }
+    original.body = update.body || original.body
+    await original.save()
+    return original
+  }
   async remove(id, userId) {
     const original = await this.getById(id)
     if (original.creatorId.toString() !== userId) {

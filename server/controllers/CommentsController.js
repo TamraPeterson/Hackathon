@@ -11,6 +11,8 @@ export class CommentsController extends BaseController {
       .get('/:id', this.getById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
+      .put('/:id', this.edit)
+      .delete('/:id', this.remove)
   }
 
   async getAll(req, res, next) {
@@ -41,6 +43,17 @@ export class CommentsController extends BaseController {
     }
   }
 
+  async edit(req, res, next) {
+    try {
+      req.body.creatorId = req.userInfo.id
+      req.body.id = req.params.id
+      const updated = await commentsService.edit(req.body)
+      return res.send(updated)
+
+    } catch (error) {
+      next(error)
+    }
+  }
   async remove(req, res, next) {
     try {
       const comment = await commentsService.remove(req.params.id, req.userInfo.id)
